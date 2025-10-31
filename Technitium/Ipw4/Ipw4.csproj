@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+
+
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <FileVersion>0.0.1</FileVersion>
+    <Version>1.0</Version>
+
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+   
+    <Company>Scheibling Consulting AB</Company>
+    <Product>IPw4</Product>
+    <Authors>Lars Scheibling</Authors>
+    <AssemblyName>Ipw4App</AssemblyName>
+    <RootNamespace>Ipw4</RootNamespace>
+    <PackageProjectUrl>https://github.com/v3-nu/ipw4</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/v3-nu/ipw4</RepositoryUrl>
+    <Description>Translates words into IP Addresses similar to the Wild IP App</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DnsServer\DnsServerCore.ApplicationCommon\DnsServerCore.ApplicationCommon.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TechnitiumLibrary.Net">
+      <HintPath>..\TechnitiumLibrary\bin\TechnitiumLibrary.Net.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dnsApp.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.10" />
+  </ItemGroup>
+    
+    <ItemDefinitionGroup>
+        <PackageReference ExcludeAssets="none" />
+    </ItemDefinitionGroup>
+</Project>
