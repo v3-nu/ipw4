@@ -22,7 +22,7 @@
     <RootNamespace>Ipw4</RootNamespace>
     <PackageProjectUrl>https://github.com/v3-nu/ipw4</PackageProjectUrl>
     <RepositoryUrl>https://github.com/v3-nu/ipw4</RepositoryUrl>
-    <Description>Translates words into IP Addresses similar to the Wild IP App</Description>
+    <Description>Translates four word phrases into an IPv4 address</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DnsServer\DnsServerCore.ApplicationCommon\DnsServerCore.ApplicationCommon.csproj">

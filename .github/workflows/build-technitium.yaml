@@ -1,0 +1,52 @@
+name: Build Project
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+    steps:
+      - name: Checkout Git
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Install .NET 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      
+      - name: Build TechnitiumLibrary.Net
+        working-directory: ./Technitium/TechnitiumLibrary
+        run: dotnet build ./TechnitiumLibrary.Net -c Release
+      
+      - name: Build DnsServerCore.ApplicationCommon
+        working-directory: ./Technitium/DnsServer
+        run: dotnet build ./DnsServerCore.ApplicationCommon
+      
+      - name: Restore dependencies
+        working-directory: ./Technitium/Ipw4
+        run: dotnet restore
+
+      - name: Build Ipw4
+        working-directory: ./Technitium/Ipw4
+        run: |
+            dotnet build --no-restore -c Release /p:Platform="Any CPU" /p:Version=${{ github.ref_name }}
+            cd bin/Release
+            zip -r Technitium.App.Ipw4.zip ./*
+      
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: |
+            Technitium/Ipw4/bin/Release/Technitium.App.Ipw4.zip
+            README.md
+          body_path: README.md
+          name: Ipw4 Technitium App Release ${{ github.ref_name }}
