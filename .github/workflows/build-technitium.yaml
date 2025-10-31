@@ -38,7 +38,7 @@ jobs:
         working-directory: ./Technitium/Ipw4
         run: |
             dotnet build --no-restore -c Release /p:Platform="Any CPU" /p:Version=${{ github.ref_name }}
-            cd bin/Release
+            cd "bin/Any CPU/Release"
             zip -r Technitium.App.Ipw4.zip ./*
       
       - name: Create release
@@ -46,7 +46,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           files: |
-            Technitium/Ipw4/bin/Release/Technitium.App.Ipw4.zip
+            Technitium/Ipw4/bin/Any CPU/Release/Technitium.App.Ipw4.zip
             README.md
           body_path: README.md
           name: Ipw4 Technitium App Release ${{ github.ref_name }}
